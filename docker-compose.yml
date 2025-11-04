@@ -17,7 +17,7 @@ services:
       - plant-growth-net
 
   keycloak:
-    image: quay.io/keycloak/keycloak:25.0.2   # phiên bản ổn định
+    image: ids-keycloak   # phiên bản ổn định
     container_name: keycloak_server
     environment:
       - KEYCLOAK_ADMIN=admin
@@ -36,7 +36,28 @@ services:
     depends_on:
       - postgres
     volumes:
+      - ./keycloak-init/realm/:/opt/keycloak/data/import/
+    networks:
+      - plant-growth-net
+  
+  keycloak-importer:
+    image: alpine:3.20
+    container_name: keycloak_importer
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - REALM=plant-growth
+      - KEYCLOAK_URL=http://keycloak:8080
+    depends_on:
+      - keycloak
+    volumes:
       - ./keycloak-init/:/opt/keycloak/data/import/
+    entrypoint: >
+      /bin/sh -c "
+        apk add --no-cache curl jq;
+        chmod +x /opt/keycloak/data/import/import-keycloak-api.sh;
+        /opt/keycloak/data/import/import-keycloak-api.sh
+      "
     networks:
       - plant-growth-net
 

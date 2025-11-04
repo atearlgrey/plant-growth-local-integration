@@ -1,0 +1,21 @@
+{
+  "clientId": "plant-growth-service",
+  "name": "plant-growth-service",
+  "description": "plant-growth-service for Spring Boot service",
+  "enabled": true,
+  "protocol": "openid-connect",
+  "publicClient": false,
+  "serviceAccountsEnabled": true,
+  "clientAuthenticatorType": "client-secret",
+  "secret": "xa05iFbzZ2uxtTAIeVIYaULST4AL6oC3",
+  "redirectUris": ["/*"],
+  "webOrigins": ["/*"],
+  "standardFlowEnabled": false,
+  "directAccessGrantsEnabled": false,
+  "defaultClientScopes": [
+    "web-origins",
+    "roles",
+    "profile",
+    "email"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "clientId": "plant-growth-client",
+  "name": "plant-growth-client",
+  "description": "plant-growth-client for Angular",
+  "rootUrl": "http://localhost:4200",
+  "adminUrl": "http://localhost:4200",
+  "baseUrl": "http://localhost:4200",
+  "enabled": true,
+  "publicClient": true,
+  "protocol": "openid-connect",
+  "redirectUris": ["http://localhost:4200/*"],
+  "webOrigins": ["*"],
+  "standardFlowEnabled": true,
+  "directAccessGrantsEnabled": false,
+  "serviceAccountsEnabled": false,
+  "attributes": {
+    "post.logout.redirect.uris": "http://localhost:4200/*"
+  },
+  "defaultClientScopes": [
+    "web-origins",
+    "roles",
+    "profile",
+    "email",
+    "ids-permission-scope"
+  ]
+}

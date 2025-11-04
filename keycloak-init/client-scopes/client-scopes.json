@@ -1,0 +1,26 @@
+{
+  "name": "ids-permission-scope",
+  "description": "Client scope for injecting IDS permissions claim into tokens",
+  "protocol": "openid-connect",
+  "type": "optional",
+  "attributes": {
+    "include.in.token.scope": "true",
+    "display.on.consent.screen": "false"
+  },
+  "protocolMappers": [
+    {
+      "name": "ids-permission-mapper",
+      "protocol": "openid-connect",
+      "protocolMapper": "ids-permission-mapper",
+      "consentRequired": false,
+      "config": {
+        "claim.name": "permissions",
+        "jsonType.label": "JSON",
+        "id.token.claim": "true",
+        "access.token.claim": "true",
+        "userinfo.token.claim": "true",
+        "lightweight.access.token.claim": "false"
+      }
+    }
+  ]
+}
