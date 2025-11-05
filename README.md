@@ -112,3 +112,31 @@ Default password requirements:
 - At least 1 uppercase letter
 - At least 1 number
 - At least 1 special character
+
+## Database migrations (Flyway)
+
+This project now includes Flyway migrations to manage database creation and schema.
+
+- Migration files are located in `./flyway/sql`.
+- The first migration `V1__create_databases_and_users.sql` creates the `keycloak` and `plant_growth_db` databases and their users (converted from `postgres-init/00-init-databases.sql`).
+
+How to run migrations:
+
+1. Start the core services (Postgres and Keycloak):
+```bash
+docker-compose up -d postgres keycloak
+```
+
+2. Run Flyway migrations (recommended):
+```bash
+docker-compose run --rm flyway migrate
+```
+
+Alternatively, you can let Compose start the flyway service which will run migrations and exit:
+```bash
+docker-compose up flyway
+```
+
+Notes:
+- Flyway connects to the Postgres server using the `postgres` superuser to create databases and users. The connection is configured in `docker-compose.yml` (FLYWAY_URL, FLYWAY_USER, FLYWAY_PASSWORD).
+- If you prefer the old behaviour where SQL in `postgres-init/` is executed by Postgres during initialization, you can keep that mount and remove the Flyway service. Currently the compose file uses Flyway for initialization.

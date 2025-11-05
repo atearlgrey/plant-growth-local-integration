@@ -11,7 +11,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./postgres-init:/docker-entrypoint-initdb.d
+      # Moved DB initialization to Flyway migrations. Keep persistent data volume only.
       - postgres_data:/var/lib/postgresql/data
     networks:
       - plant-growth-net
@@ -58,6 +58,27 @@ services:
         chmod +x /opt/keycloak/data/import/import-keycloak-api.sh;
         /opt/keycloak/data/import/import-keycloak-api.sh
       "
+    networks:
+      - plant-growth-net
+
+  flyway:
+    image: flyway/flyway:9
+    container_name: flyway
+    entrypoint: [ "bash" ]
+    environment:
+      - FLYWAY_CONNECT_RETRIES=10
+      - FLYWAY_BASELINE_VERSION=0
+    command: >
+      -c "
+        /flyway/flyway -configFiles=/flyway/keycloak/conf/flyway-ddl.conf -user=keycloak -password=keycloak -baselineOnMigrate="true" migrate;
+        /flyway/flyway -configFiles=/flyway/keycloak/conf/flyway-master-data.conf -user=keycloak -password=keycloak -baselineOnMigrate="true" migrate;
+        /flyway/flyway -configFiles=/flyway/keycloak/conf/flyway-test-data.conf -user=keycloak -password=keycloak -baselineOnMigrate="true" migrate;
+      "
+    volumes:
+      - ./flyway-migration-files/keycloak:/flyway/keycloak:ro
+    depends_on:
+      - postgres
+      - keycloak
     networks:
       - plant-growth-net
 
