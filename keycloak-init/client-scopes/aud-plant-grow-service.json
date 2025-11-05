@@ -1,0 +1,19 @@
+{
+  "name": "aud-plant-growth-service",
+  "description": "Audience for plant-growth-service",
+  "protocol": "openid-connect",
+  "protocolMappers": [
+    {
+      "name": "audience-plant-growth-service",
+      "protocol": "openid-connect",
+      "protocolMapper": "oidc-audience-mapper",
+      "consentRequired": false,
+      "config": {
+        "included.client.audience": "plant-growth-service",
+        "id.token.claim": "false",
+        "access.token.claim": "true",
+        "userinfo.token.claim": "false"
+      }
+    }
+  ]
+}

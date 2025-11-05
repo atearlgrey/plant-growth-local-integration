@@ -21,6 +21,7 @@
     "roles",
     "profile",
     "email",
-    "ids-permission-scope"
+    "ids-permission-scope",
+    "aud-plant-growth-service"
   ]
 }

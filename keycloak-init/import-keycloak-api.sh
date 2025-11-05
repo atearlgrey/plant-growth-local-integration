@@ -67,6 +67,9 @@ import_dir_files() {
 # Client Scopes
 import_dir_files "client-scopes" "${IMPORT_DIR}/client-scopes"
 
+# Resource Servers
+import_dir_files "clients" "${IMPORT_DIR}/resources"
+
 # Clients
 import_dir_files "clients" "${IMPORT_DIR}/clients"
 
