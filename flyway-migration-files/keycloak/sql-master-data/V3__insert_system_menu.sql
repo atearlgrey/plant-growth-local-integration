@@ -1,0 +1,2 @@
+INSERT INTO ids_system_menu (system_menu_code, function_code, title, description, icon, "path", resource_code, parent_code, menu_level, ord, is_public, is_enabled, created_date, created_by, updated_date, updated_by) 
+VALUES('PLANT_GROWTH_MENU', 'PLANT_GROWTH_USER', 'Plant grow scence', 'Plant grow scence', 'ico-plant', '/plant-growth-1', NULL, NULL, 1, 0, false, true, '2025-11-06 19:07:17.916', NULL, NULL, NULL);

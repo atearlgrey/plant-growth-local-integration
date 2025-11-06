@@ -1,0 +1,2 @@
+INSERT INTO ids_function (function_code, client_id, title, description, parent_code, ord, is_enabled, created_date, created_by, updated_date, updated_by) 
+VALUES('PLANT_GROWTH_USER', 'a3aef133-eb5e-4bfb-8415-8602490dcc7c', 'Plant Growth User', 'Plant Growth User', NULL, 0, true, '2025-11-06 17:35:13.954', NULL, NULL, NULL);
